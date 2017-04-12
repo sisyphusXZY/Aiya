@@ -36,6 +36,9 @@ public class RandomMatchFragment extends LazyFragment {
         return instance;
     }
 
+    private void setCanRandom(boolean canRandom) {
+        this.canRandom = canRandom;
+    }
 
     @Nullable
     @Override
@@ -66,10 +69,6 @@ public class RandomMatchFragment extends LazyFragment {
         ((TextView) rootView.findViewById(R.id.tv_love_match_at_random_warn)).setText(spannable);
     }
 
-    private void setCanRandom(boolean canRandom) {
-        this.canRandom = canRandom;
-    }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -77,6 +76,7 @@ public class RandomMatchFragment extends LazyFragment {
                 fm.popBackStack();
                 break;
             case R.id.btn_invite:
+                fm.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 ((MyApplication) getActivity().getApplication()).setMatched(true);
                 ((MainActivity) getActivity()).notifyAdapter();
                 break;

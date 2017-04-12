@@ -18,7 +18,7 @@ import com.aiyaschool.aiya.community.CommunityFragment;
 import com.aiyaschool.aiya.love.matched.MatchedContainerFragment;
 import com.aiyaschool.aiya.love.unmatched.UnmatchedContainerFragment;
 import com.aiyaschool.aiya.me.MeFragment;
-import com.aiyaschool.aiya.message.MessageFragment;
+import com.aiyaschool.aiya.message.MsgListFragment;
 import com.aiyaschool.aiya.util.BottomNavigationViewUtil;
 import com.aiyaschool.aiya.util.StatusBarUtil;
 
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private void initView() {
         fragments = new Fragment[]{
                 new CommunityFragment(),
-                new MessageFragment(),
+                new MsgListFragment(),
                 ((MyApplication) getApplication()).isMatched()
                         ? new MatchedContainerFragment()
                         : new UnmatchedContainerFragment(),
@@ -75,7 +75,8 @@ public class MainActivity extends AppCompatActivity {
                     FragmentTransaction ft = fm.beginTransaction();
                     ft.remove(fragment);
                     fragment = new MatchedContainerFragment();
-                    ft.add(container.getId(), fragment, fragmentTag);
+                    ft.add(container.getId(), fragment, fragmentTag)
+                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                     ft.attach(fragment);
                     ft.commit();
                 } else if (fragment instanceof MatchedContainerFragment
@@ -83,7 +84,8 @@ public class MainActivity extends AppCompatActivity {
                     FragmentTransaction ft = fm.beginTransaction();
                     ft.remove(fragment);
                     fragment = new UnmatchedContainerFragment();
-                    ft.add(container.getId(), fragment, fragmentTag);
+                    ft.add(container.getId(), fragment, fragmentTag)
+                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                     ft.attach(fragment);
                     ft.commit();
                 }
@@ -151,8 +153,4 @@ public class MainActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
 }

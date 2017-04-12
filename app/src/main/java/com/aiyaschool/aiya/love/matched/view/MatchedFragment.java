@@ -19,7 +19,6 @@ import com.aiyaschool.aiya.base.LazyFragment;
 import com.aiyaschool.aiya.love.matched.presenter.i.ILoveMatchedPresenter;
 import com.aiyaschool.aiya.love.matched.presenter.impl.LoveMatchedPresenter;
 
-
 /**
  * Created by EGOISTK21 on 2017/3/23.
  */
@@ -31,6 +30,11 @@ public class MatchedFragment extends LazyFragment implements ILoveMatchedView {
     private ViewPager vpLoveMatched;
     private TabLayout tabLayout;
     private FragmentTransaction ft;
+
+    public static MatchedFragment newInstance() {
+        MatchedFragment instance = new MatchedFragment();
+        return instance;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
